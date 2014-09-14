@@ -1,9 +1,9 @@
 <?php
 
-define('CONFIG_FILE_REQUIRED', 'config/config.inc.php');
+$file = 'config/config.inc.php';
 
-if (!file_exists(CONFIG_FILE_REQUIRED)) {
+if (!file_exists($file)) {
     header('location: _installer/setup-config.php');
 }
-
+// replace for your application
 echo 'installed';

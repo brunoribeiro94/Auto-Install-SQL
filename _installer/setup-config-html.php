@@ -121,9 +121,9 @@ EOFPAGE;
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css'  href='http://localhost/wordpress/wp-includes/css/buttons.min.css?ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='buttons-css' href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='open-sans-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='install-css' href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
         <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
@@ -141,9 +141,9 @@ EOFPAGE;
         <p>Provavelmente esses itens foram fornecidos pelo seu servidor de hospedagem. Se não tiver essa informação, então você precisa entrar em contato com eles antes de continuar. Se estiver pronto...</p>
 
         <p class="step"><a href="setup-config.php?step=1" class="button button-large">Vamos lá!</a></p>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-admin/js/language-chooser.min.js?ver=4.0'></script>
+        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
+        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
     </body>
 </html>
 EOFPAGE;
@@ -162,18 +162,18 @@ EOFPAGE;
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css'  href='http://localhost/wordpress/wp-includes/css/buttons.min.css?ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
         <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css'  href='http://localhost/wordpress/wp-admin/css/install.min.css?ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
-        <h1 id="logo"><a href="https://br.wordpress.org/" tabindex="-1">{$this->name}</a></h1>
+        <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
         <form method="post" action="setup-config.php?step=2">
             <p>Abaixo você deve digitar suas informações de conexão com o banco de dados. Se você não tem certeza quais são, contate sua hospedagem.</p>
             <table class="form-table">
                 <tr>
                     <th scope="row"><label for="dbname">Nome do Banco de Dados</label></th>
-                    <td><input name="dbname" id="dbname" type="text" size="25" value="wordpress" /></td>
+                    <td><input name="dbname" id="dbname" type="text" size="25" value="database" /></td>
                     <td>Nome do banco de dados onde você quer instalar o WP.</td>
                 </tr>
                 <tr>
@@ -192,12 +192,11 @@ EOFPAGE;
                     <td>Você deve obter esta informação do seu servidor de hospedagem, se <code>localhost</code> não funcionar.</td>
                 </tr>
             </table>
-            <input type="hidden" name="language" value="pt_BR" />
             <p class="step"><input name="submit" type="submit" value="Enviar" class="button button-large" /></p>
         </form>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-admin/js/language-chooser.min.js?ver=4.0'></script>
+        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
+        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
     </body>
 </html>
 EOFPAGE;
@@ -340,19 +339,19 @@ EOFPAGE;
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>WordPress &rsaquo; Arquivo de Configuração da Instalação</title>
-	<link rel='stylesheet' id='buttons-css'  href='http://localhost/wordpress/wp-includes/css/buttons.min.css?ver=4.0' type='text/css' media='all' />
+	<title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
+	<link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
 <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-<link rel='stylesheet' id='install-css'  href='http://localhost/wordpress/wp-admin/css/install.min.css?ver=4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
 </head>
 <body class="wp-core-ui">
-<h1 id="logo"><a href="https://br.wordpress.org/" tabindex="-1">{$this->name}</a></h1>
+<h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
 <p>Muito bem! Você concluiu esta parte da instalação. Agora o {$this->name} pode se comunicar com seu banco de dados. Se você estiver pronto, é hora de&hellip;</p>
 
 <p class="step"><a href="install.php" class="button button-large">Instalar</a></p>
-<script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
-<script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-<script type='text/javascript' src='http://localhost/wordpress/wp-admin/js/language-chooser.min.js?ver=4.0'></script>
+<script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
+<script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
 </body>
 </html>
 EOFPAGE;
@@ -370,13 +369,13 @@ EOFPAGE;
     <head>
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>WordPress &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css'  href='http://localhost/wordpress/wp-includes/css/buttons.min.css?ver=4.0' type='text/css' media='all' />
+        <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
+        <link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
         <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css'  href='http://localhost/wordpress/wp-admin/css/install.min.css?ver=4.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
-        <h1 id="logo"><a href="https://br.wordpress.org/" tabindex="-1">{$this->name}</a></h1>
+        <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
         <p>Não foi possível gravar o arquivo <code>{$this->file}</code>.</p>
         <p>Você pode criar o arquivo <code>{$this->file}</code> manualmente e colar o seguinte texto nele.</p>
         <textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly">{$file_config}</textarea>
@@ -389,9 +388,9 @@ EOFPAGE;
                 el.select();
             })();
         </script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='http://localhost/wordpress/wp-admin/js/language-chooser.min.js?ver=4.0'></script>
+        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
+        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
     </body>
 </html>
 EOFPAGE;

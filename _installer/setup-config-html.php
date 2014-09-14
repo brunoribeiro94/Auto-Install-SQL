@@ -31,6 +31,12 @@ class setup_config_html {
     var $link = 'http://example.com';
 
     /**
+     * logo your project
+     * @var str 
+     */
+    var $logo = 'images/w-logo-blue.png';
+
+    /**
      * Here is the main configuration file of your application.
      * Note: replace special characters that makes conflict with the EOFPAGE 
      * if the character in question does not exist, add it to 
@@ -126,7 +132,7 @@ EOFPAGE;
         <link rel='stylesheet' id='install-css' href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
-        <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
+        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
 
         <p>Bem-vindo ao {$this->name}. Antes de começar, precisamos de algumas informações sobre o banco de dados. Você precisa conhecer o valor dos seguintes items antes de continuar.</p>
         <ol>
@@ -167,7 +173,7 @@ EOFPAGE;
         <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
-        <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
+        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
         <form method="post" action="setup-config.php?step=2">
             <p>Abaixo você deve digitar suas informações de conexão com o banco de dados. Se você não tem certeza quais são, contate sua hospedagem.</p>
             <table class="form-table">
@@ -345,7 +351,7 @@ EOFPAGE;
 <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
 </head>
 <body class="wp-core-ui">
-<h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
+<h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
 <p>Muito bem! Você concluiu esta parte da instalação. Agora o {$this->name} pode se comunicar com seu banco de dados. Se você estiver pronto, é hora de&hellip;</p>
 
 <p class="step"><a href="install.php" class="button button-large">Instalar</a></p>
@@ -375,7 +381,7 @@ EOFPAGE;
         <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
     </head>
     <body class="wp-core-ui">
-        <h1 id="logo"><a href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
+        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
         <p>Não foi possível gravar o arquivo <code>{$this->file}</code>.</p>
         <p>Você pode criar o arquivo <code>{$this->file}</code> manualmente e colar o seguinte texto nele.</p>
         <textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly">{$file_config}</textarea>

@@ -1,5 +1,5 @@
 # Auto-Install-SQL
-This script is used for easy configuration database.
+This script is used for easy database configuration.
 
 ### Key Features
 * Uses Mysqli to check for database access (more security)

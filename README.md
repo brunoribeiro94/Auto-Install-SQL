@@ -2,8 +2,8 @@
 This script is used for easy configuration database.
 
 ### Key Features
-* Uses Mysqli for check database access (more security)
-* Create file of configuration
+* Uses Mysqli to check for database access (more security)
+* Create configuration file
 * Layout based on the wordpress installation
 
 ## Requirements

@@ -8,7 +8,7 @@
  * @package Config
  * @todo Improve the customization of the configuration file
  * */
-class setup_config_html {
+class SetupConfigHTML {
 
     /**
      * file config required for start the website
@@ -45,7 +45,7 @@ class setup_config_html {
      * @param array $POST
      * @return HTML
      */
-    protected function FILE_GENERATE($POST) {
+    protected function FileGenerate($POST) {
         $year = date('Y');
         return <<<EOFPAGE
 &#60;?php
@@ -119,7 +119,7 @@ EOFPAGE;
      * @access protected
      * @return HTML
      */
-    protected function HTML_Step1() {
+    protected function HTMLStep1() {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -160,7 +160,7 @@ EOFPAGE;
      * @access protected
      * @return HTML
      */
-    protected function HTML_Step2() {
+    protected function HTMLStep2() {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -213,7 +213,7 @@ EOFPAGE;
      * @access protected
      * @return type
      */
-    protected function HTML_Erro_Connection() {
+    protected function HTMLErroConnection() {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
@@ -338,7 +338,7 @@ EOFPAGE;
      * @access protected
      * @return HTML
      */
-    protected function HTML_Sucess_Created_File_Config() {
+    protected function HTMLSucessCreatedFileConfig() {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -368,7 +368,7 @@ EOFPAGE;
      * @access protected
      * @return HTML
      */
-    protected function HTML_Erro_Unknow() {
+    protected function HTMLErroUnknow() {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

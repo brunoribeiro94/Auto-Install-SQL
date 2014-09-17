@@ -1,4 +1,5 @@
 <?php
+
 // load html pages
 require_once('setup-config-html.php');
 
@@ -38,14 +39,18 @@ class SetupConfig extends SetupConfigHTML {
 
     /**
      * Write a file in UTF-8 format
-     * @param type $filename
-     * @param type $content
+     * @param String $filename Full Path
+     * @param String $content Content that will be written
      */
     private function WriteUTF8File($filename, $content) {
         $f = fopen($filename, "w");
-        fwrite($f, pack("CCC", 0xef, 0xbb, 0xbf)); // Now UTF-8 - Add byte order mark
-        fwrite($f, $content);
-        fclose($f);
+        if (!$f) {
+            die('Error was not possible to write the file, check the permissions and the folder was created.');
+        } else {
+            fwrite($f, pack("CCC", 0xef, 0xbb, 0xbf)); // Now UTF-8 - Add byte order mark
+            fwrite($f, $content);
+            fclose($f);
+        }
     }
 
     /**
@@ -68,7 +73,7 @@ class SetupConfig extends SetupConfigHTML {
             $this->WriteUTF8File($file, $this->ReplaceASCIIFwrite($this->FileGenerate($_POST)));
             // defines the permission to 666
             chmod($file, 0666);
-            // faz a verificação final, se o arquivo foi criado
+            // makes a final check, if the file was created
             if (file_exists($file))
                 print $this->HTMLSucessCreatedFileConfig();
             else

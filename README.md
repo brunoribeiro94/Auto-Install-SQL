@@ -20,16 +20,16 @@ Best way to do is cloning via git: `git clone https://github.com/offboard/Auto-I
 #### CONFIGS IN THE CODE:
 
 In *_installer/setup-config-html.php*:
-4. enter you  file config name  from your website in ```$file```
-5. enter your name project in ```$name```
-6. enter your link project in ```$link```
-7. define your logo project in ```$logo```
-8. protected function put in the code of your configuration file, replace the credentials of the database, you can use ```php print_r($ POST);``` to get past the POST method values.
+4. enter you  file config name  from your website in `$file`
+5. enter your name project in `$name`
+6. enter your link project in `$link`
+7. define your logo project in `$logo`
+8. protected function put in the code of your configuration file, replace the credentials of the database, you can use `print_r($ POST);` to get past the POST method values.
 
 In *_installer/install.php*:
 
 9. replace if necessary credentials to connect to the database.
-10. replace the variable ```php $sql_execute;``` put your .sql that will run on the database.
+10. replace the variable `$sql_execute` put your .sql that will run on the database.
 
 
 ## Index.php Example

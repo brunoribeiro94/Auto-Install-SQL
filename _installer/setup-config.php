@@ -1,4 +1,5 @@
 <?php
+
 // load html pages
 require_once('setup-config-html.php');
 
@@ -9,13 +10,13 @@ require_once('setup-config-html.php');
  * @access public
  * @package setup_config_html
  * */
-class Setup_Config extends setup_config_html {
+class SetupConfig extends SetupConfigHTML {
 
     /**
      * ASCI table for replace
      * @var array 
      */
-    private $ASCI_table_replace = array(
+    private $ASCITableReplace = array(
         '&#36;' => '$',
         '&#60;' => '<',
         '&#231;' => 'ç',
@@ -29,8 +30,8 @@ class Setup_Config extends setup_config_html {
      * Replace special code for create a new file config with format UFT-8
      * @return string
      */
-    private function _replace_ASCII_fwrite($string) {
-        foreach ($this->ASCI_table_replace as $k => $v) {
+    private function ReplaceASCIIFwrite($string) {
+        foreach ($this->ASCITableReplace as $k => $v) {
             $string = str_replace($k, $v, $string);
         }
         return $string;
@@ -38,21 +39,25 @@ class Setup_Config extends setup_config_html {
 
     /**
      * Write a file in UTF-8 format
-     * @param type $filename
-     * @param type $content
+     * @param String $filename Full Path
+     * @param String $content Content that will be written
      */
-    private function writeUTF8File($filename, $content) {
+    private function WriteUTF8File($filename, $content) {
         $f = fopen($filename, "w");
-        fwrite($f, pack("CCC", 0xef, 0xbb, 0xbf)); // Now UTF-8 - Add byte order mark
-        fwrite($f, $content);
-        fclose($f);
+        if (!$f) {
+            die('Error was not possible to write the file, check the permissions and the folder was created.');
+        } else {
+            fwrite($f, pack("CCC", 0xef, 0xbb, 0xbf)); // Now UTF-8 - Add byte order mark
+            fwrite($f, $content);
+            fclose($f);
+        }
     }
 
     /**
      * Check conecction
      * @return boolean
      */
-    private function check_connection($POST) {
+    private function CheckConnection($POST) {
         @$mysqli = new mysqli($POST['dbhost'], $POST['uname'], $POST['pwd'], $POST['dbname']);
         // Check if any error occurred
         return !mysqli_connect_errno() ? true : false;
@@ -62,19 +67,19 @@ class Setup_Config extends setup_config_html {
      * Check database connection and make a file of config
      * @return Void
      */
-    private function Make_file() {
+    private function MakeFile() {
         $file = '../' . $this->file;
-        if ($this->check_connection($_POST) == true) {
-            $this->writeUTF8File($file, $this->_replace_ASCII_fwrite($this->FILE_GENERATE($_POST)));
+        if ($this->CheckConnection($_POST) == true) {
+            $this->WriteUTF8File($file, $this->ReplaceASCIIFwrite($this->FileGenerate($_POST)));
             // defines the permission to 666
             chmod($file, 0666);
-            // faz a verificação final, se o arquivo foi criado
+            // makes a final check, if the file was created
             if (file_exists($file))
-                print $this->HTML_Sucess_Created_File_Config();
+                print $this->HTMLSucessCreatedFileConfig();
             else
-                print $this->HTML_Erro_Unknow();
+                print $this->HTMLErroUnknow();
         } else {
-            print $this->HTML_Erro_Connection();
+            print $this->HTMLErroConnection();
         }
     }
 
@@ -86,17 +91,17 @@ class Setup_Config extends setup_config_html {
         $step = filter_input(INPUT_GET, 'step');
         switch ($step) {
             case 1:
-                print $this->HTML_Step2();
+                print $this->HTMLStep2();
                 break;
             case 2:
-                $this->Make_file();
+                $this->MakeFile();
                 break;
             default :
-                print $this->HTML_Step1();
+                print $this->HTMLStep1();
                 break;
         }
     }
 
 }
 
-new Setup_Config();
+new SetupConfig();

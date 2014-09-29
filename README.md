@@ -24,7 +24,7 @@ In *_installer/setup-config-html.php*:
 5. enter your name project in `$name`
 6. enter your link project in `$link`
 7. define your logo project in `$logo`
-8. protected function put in the code of your configuration file, replace the credentials of the database, you can use `print_r($ POST);` to get past the POST method values.
+8. protected function put in the code of your configuration file, replace the credentials of the database, you can use `print_r($POST);` to get past the POST method values.
 
 In *_installer/install.php*:
 

@@ -8,8 +8,9 @@
  * @package Config
  * @todo Improve the customization of the configuration file
  * */
-class SetupConfigHTML {
-
+class SetupConfigHTML
+  {
+    
     /**
      * file config required for start the website
      * Note: at the time of verification and creating the configuration file, is always 
@@ -17,25 +18,25 @@ class SetupConfigHTML {
      * @var string 
      */
     public $file = 'config/config.inc.php';
-
+    
     /**
      * Name your project
      * @var str 
      */
     var $name = 'Example';
-
+    
     /**
      * link your project
      * @var str 
      */
     var $link = 'http://example.com';
-
+    
     /**
      * logo your project
      * @var str 
      */
     var $logo = 'images/w-logo-blue.png';
-
+    
     /**
      * Here is the main configuration file of your application.
      * Note: replace special characters that makes conflict with the EOFPAGE 
@@ -45,7 +46,8 @@ class SetupConfigHTML {
      * @param array $POST
      * @return HTML
      */
-    protected function FileGenerate($POST) {
+    protected function FileGenerate($POST)
+      {
         $year = date('Y');
         return <<<EOFPAGE
 &#60;?php
@@ -112,14 +114,15 @@ define('DB_NAME', '{$POST['dbname']}');
 define('DB_USER', '{$POST['uname']}');
 define('DB_PASS', '{$POST['pwd']}');
 EOFPAGE;
-    }
-
+      }
+    
     /**
      * Create an HTML for step 1
      * @access protected
      * @return HTML
      */
-    protected function HTMLStep1() {
+    protected function HTMLStep1()
+      {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -153,14 +156,15 @@ EOFPAGE;
     </body>
 </html>
 EOFPAGE;
-    }
-
+      }
+    
     /**
      * Create an HTML for step 2
      * @access protected
      * @return HTML
      */
-    protected function HTMLStep2() {
+    protected function HTMLStep2()
+      {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -206,14 +210,15 @@ EOFPAGE;
     </body>
 </html>
 EOFPAGE;
-    }
-
+      }
+    
     /**
      * Create an HTML when it is not possible to connect to the database
      * @access protected
      * @return type
      */
-    protected function HTMLErroConnection() {
+    protected function HTMLErroConnection()
+      {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
@@ -331,14 +336,15 @@ EOFPAGE;
         return false;" class="button button-large">Tente novamente</a></p></body>
 </html>
 EOFPAGE;
-    }
-
+      }
+    
     /**
      * create an HTML when the file was created successfully
      * @access protected
      * @return HTML
      */
-    protected function HTMLSucessCreatedFileConfig() {
+    protected function HTMLSucessCreatedFileConfig()
+      {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -361,14 +367,15 @@ EOFPAGE;
 </body>
 </html>
 EOFPAGE;
-    }
-
+      }
+    
     /**
      * create an HTML when some error occurs
      * @access protected
      * @return HTML
      */
-    protected function HTMLErroUnknow() {
+    protected function HTMLErroUnknow()
+      {
         return <<<EOFPAGE
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -400,6 +407,6 @@ EOFPAGE;
     </body>
 </html>
 EOFPAGE;
-    }
-
-}
+      }
+    
+  }

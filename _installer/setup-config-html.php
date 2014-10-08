@@ -8,9 +8,8 @@
  * @package Config
  * @todo Improve the customization of the configuration file
  * */
-class SetupConfigHTML
-  {
-    
+class SetupConfigHTML {
+
     /**
      * file config required for start the website
      * Note: at the time of verification and creating the configuration file, is always 
@@ -18,25 +17,57 @@ class SetupConfigHTML
      * @var string 
      */
     public $file = 'config/config.inc.php';
-    
+
     /**
      * Name your project
      * @var str 
      */
     var $name = 'Example';
-    
+
     /**
      * link your project
      * @var str 
      */
     var $link = 'http://example.com';
-    
+
     /**
      * logo your project
      * @var str 
      */
     var $logo = 'images/w-logo-blue.png';
-    
+
+    /**
+     * Language of pages
+     * @var string 
+     */
+    var $CurrentLanguage = 'pt-br';
+
+    /**
+     * Rules for replacement
+     * @var array
+     */
+    var $Rules = array(
+        "&lt;" => "<",
+        "&gt;" => ">",
+        "&quot;" => '"',
+        "&apos;" => "'",
+        "&amp;" => "&",
+    );
+
+    /**
+     * Metthod Magic
+     * Require language file
+     */
+    public function __construct() {
+        switch ($this->CurrentLanguage) {
+            case 'pt-br':
+                include(__DIR__ . '/Language/pt-br.php');
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * Here is the main configuration file of your application.
      * Note: replace special characters that makes conflict with the EOFPAGE 
@@ -46,8 +77,7 @@ class SetupConfigHTML
      * @param array $POST
      * @return HTML
      */
-    protected function FileGenerate($POST)
-      {
+    protected function FileGenerate($POST) {
         $year = date('Y');
         return <<<EOFPAGE
 &#60;?php
@@ -114,299 +144,152 @@ define('DB_NAME', '{$POST['dbname']}');
 define('DB_USER', '{$POST['uname']}');
 define('DB_PASS', '{$POST['pwd']}');
 EOFPAGE;
-      }
-    
+    }
+
+    /**
+     * Convert Special Char
+     * @param string $string
+     * @return string
+     */
+    private function RevertHTML($string) {
+        foreach ($this->Rules as $k => $v) {
+            $string = str_replace($k, $v, $string);
+        }
+        return $string;
+    }
+
     /**
      * Create an HTML for step 1
      * @access protected
      * @return HTML
      */
-    protected function HTMLStep1()
-      {
-        return <<<EOFPAGE
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css' href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='open-sans-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css' href='css/install.min.css?ver=4.0' type='text/css' media='all' />
-    </head>
-    <body class="wp-core-ui">
-        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
+    protected function HTMLStep1() {
+        $html = new DOMDocument();
+        $html->loadHTMLFile("Pages/step1.xml");
+        $html->preserveWhiteSpace = false;
+        $html->formatOutput = true;
 
-        <p>Bem-vindo ao {$this->name}. Antes de começar, precisamos de algumas informações sobre o banco de dados. Você precisa conhecer o valor dos seguintes items antes de continuar.</p>
-        <ol>
-            <li>Nome do Banco de Dados</li>
-            <li>Nome de Usuário do Banco de Dados</li>
-            <li>Senha do Banco de Dados</li>
-            <li>Sevidor do Banco de Dados</li>
-        </ol>
-        <p>
-            Nós vamos usar essas informações para criar um arquivo <code>{$this->file}</code>.	<strong>Se por acaso, esta criação automática de arquivo não funcionar, não se preocupe. Tudo o que ele faz é preencher as informações do banco de dados em um arquivo de configuração. Você também pode simplesmente abrir <code>{$this->file}</code> num editor de texto, preencher suas informações e salvá-lo como <code>{$this->file}</code>.</strong>
-        </p>
-        <p>Provavelmente esses itens foram fornecidos pelo seu servidor de hospedagem. Se não tiver essa informação, então você precisa entrar em contato com eles antes de continuar. Se estiver pronto...</p>
+        $html->getElementById('logo')->nodeValue = sprintf(LOGO, $this->logo, $this->link, $this->name);
+        $html->getElementsByTagName('title')->item(0)->nodeValue = sprintf(STEP1_TITLETAG, $this->name);
+        $html->getElementById('title')->nodeValue = sprintf(STEP1_TITLE, $this->name);
+        $html->getElementById('LIST1')->nodeValue = STEP1_LIST1;
+        $html->getElementById('LIST2')->nodeValue = STEP1_LIST2;
+        $html->getElementById('LIST3')->nodeValue = STEP1_LIST3;
+        $html->getElementById('LIST4')->nodeValue = STEP1_LIST4;
+        $html->getElementById('txt1')->nodeValue = sprintf(STEP1_TEXT1, $this->file, $this->file, $this->file);
+        $html->getElementById('txt2')->nodeValue = STEP1_TEXT2;
+        $html->getElementById('step_1_buttom')->nodeValue = STEP1_BUTTOM;
 
-        <p class="step"><a href="setup-config.php?step=1" class="button button-large">Vamos lá!</a></p>
-        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
-    </body>
-</html>
-EOFPAGE;
-      }
-    
+        return $this->RevertHTML($html->saveHTML());
+    }
+
     /**
      * Create an HTML for step 2
      * @access protected
      * @return HTML
      */
-    protected function HTMLStep2()
-      {
-        return <<<EOFPAGE
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
-    </head>
-    <body class="wp-core-ui">
-        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
-        <form method="post" action="setup-config.php?step=2">
-            <p>Abaixo você deve digitar suas informações de conexão com o banco de dados. Se você não tem certeza quais são, contate sua hospedagem.</p>
-            <table class="form-table">
-                <tr>
-                    <th scope="row"><label for="dbname">Nome do Banco de Dados</label></th>
-                    <td><input name="dbname" id="dbname" type="text" size="25" value="database" /></td>
-                    <td>Nome do banco de dados onde você quer instalar o WP.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="uname">Nome de usuário</label></th>
-                    <td><input name="uname" id="uname" type="text" size="25" value="usuario" /></td>
-                    <td>Usuário de MySQL</td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="pwd">Senha</label></th>
-                    <td><input name="pwd" id="pwd" type="text" size="25" value="senha" autocomplete="off" /></td>
-                    <td>&hellip;e sua senha do MySQL.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="dbhost">Servidor da banco de dados</label></th>
-                    <td><input name="dbhost" id="dbhost" type="text" size="25" value="localhost" /></td>
-                    <td>Você deve obter esta informação do seu servidor de hospedagem, se <code>localhost</code> não funcionar.</td>
-                </tr>
-            </table>
-            <p class="step"><input name="submit" type="submit" value="Enviar" class="button button-large" /></p>
-        </form>
-        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
-    </body>
-</html>
-EOFPAGE;
-      }
-    
+    protected function HTMLStep2() {
+        $html = new DOMDocument();
+        $html->loadHTMLFile("Pages/step2.xml");
+        $html->preserveWhiteSpace = false;
+        $html->formatOutput = true;
+
+        $html->getElementById('logo')->nodeValue = sprintf(LOGO, $this->logo, $this->link, $this->name);
+        $html->getElementsByTagName('title')->item(0)->nodeValue = sprintf(STEP1_TITLETAG, $this->name);
+
+        $html->getElementById('STEP2_TEXT1')->nodeValue = STEP2_TEXT1;
+
+        $html->getElementById('LIST1')->nodeValue = STEP2_LIST1;
+        $html->getElementById('DLIST1')->nodeValue = sprintf(STEP2_DLIST1, $this->name);
+
+        $html->getElementById('LIST2')->nodeValue = STEP2_LIST2;
+        $html->getElementById('DLIST2')->nodeValue = STEP2_DLIST2;
+
+        $html->getElementById('LIST3')->nodeValue = STEP2_LIST3;
+        $html->getElementById('DLIST3')->nodeValue = STEP2_DLIST3;
+
+        $html->getElementById('LIST3')->nodeValue = STEP2_LIST3;
+        $html->getElementById('DLIST3')->nodeValue = STEP2_DLIST3;
+
+        $html->getElementById('LIST4')->nodeValue = STEP2_LIST4;
+        $html->getElementById('DLIST4')->nodeValue = STEP2_DLIST4;
+
+
+        $input = $html->getElementById('send');
+        $input->removeAttribute('value');
+        $input->setAttribute('value', STEP2_BUTTOM);
+
+        return $this->RevertHTML($html->saveHTML());
+    }
+
     /**
      * Create an HTML when it is not possible to connect to the database
      * @access protected
      * @return type
      */
-    protected function HTMLErroConnection()
-      {
-        return <<<EOFPAGE
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Erro &rsaquo; {$this->name}</title>
-        <style type="text/css">
-            html {
-                background: #f1f1f1;
-            }
-            body {
-                background: #fff;
-                color: #444;
-                font-family: "Open Sans", sans-serif;
-                margin: 2em auto;
-                padding: 1em 2em;
-                max-width: 700px;
-                -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.13);
-                box-shadow: 0 1px 3px rgba(0,0,0,0.13);
-            }
-            h1 {
-                border-bottom: 1px solid #dadada;
-                clear: both;
-                color: #666;
-                font: 24px "Open Sans", sans-serif;
-                margin: 30px 0 0 0;
-                padding: 0;
-                padding-bottom: 7px;
-            }
-            #error-page {
-                margin-top: 50px;
-            }
-            #error-page p {
-                font-size: 14px;
-                line-height: 1.5;
-                margin: 25px 0 20px;
-            }
-            #error-page code {
-                font-family: Consolas, Monaco, monospace;
-            }
-            ul li {
-                margin-bottom: 10px;
-                font-size: 14px ;
-            }
-            a {
-                color: #21759B;
-                text-decoration: none;
-            }
-            a:hover {
-                color: #D54E21;
-            }
-            .button {
-                background: #f7f7f7;
-                border: 1px solid #cccccc;
-                color: #555;
-                display: inline-block;
-                text-decoration: none;
-                font-size: 13px;
-                line-height: 26px;
-                height: 28px;
-                margin: 0;
-                padding: 0 10px 1px;
-                cursor: pointer;
-                -webkit-border-radius: 3px;
-                -webkit-appearance: none;
-                border-radius: 3px;
-                white-space: nowrap;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing:    border-box;
-                box-sizing:         border-box;
+    protected function HTMLErroConnection() {
+        $html = new DOMDocument();
+        $html->loadHTMLFile("Pages/ErroConnection.xml");
+        $html->preserveWhiteSpace = false;
+        $html->formatOutput = true;
 
-                -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-                box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-                vertical-align: top;
-            }
+        $html->getElementsByTagName('title')->item(0)->nodeValue = sprintf(STEP1_TITLETAG, $this->name);
 
-            .button.button-large {
-                height: 29px;
-                line-height: 28px;
-                padding: 0 12px;
-            }
+        $html->getElementById('TEXT1')->nodeValue = ERRO_CONNETION_TEXT1;
+        $html->getElementById('TEXT2')->nodeValue = ERRO_CONNETION_TEXT2;
+        $html->getElementById('TEXT3')->nodeValue = ERRO_CONNETION_TEXT3;
+        $html->getElementById('TEXT4')->nodeValue = ERRO_CONNETION_TEXT4;
+        $html->getElementById('TEXT5')->nodeValue = ERRO_CONNETION_TEXT5;
+        $html->getElementById('TEXT6')->nodeValue = ERRO_CONNETION_TEXT6;
+        $html->getElementById('buttom')->nodeValue = ERRO_CONNETION_BUTTOM;
 
-            .button:hover,
-            .button:focus {
-                background: #fafafa;
-                border-color: #999;
-                color: #222;
-            }
+        return $this->RevertHTML($html->saveHTML());
+    }
 
-            .button:focus  {
-                -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.2);
-                box-shadow: 1px 1px 1px rgba(0,0,0,.2);
-            }
-
-            .button:active {
-                background: #eee;
-                border-color: #999;
-                color: #333;
-                -webkit-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-                box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-            }
-
-        </style>
-    </head>
-    <body id="error-page">
-        <p><h1>Erro ao estabelecer conexão com o banco de dados</h1>
-            <p>Isto tanto pode significar que as informações de nome de usuário e senha em seu arquivo <code>{$this->file}</code> estão incorretas ou que não pudemos contactar o servidor do banco de dados em <code>localhost</code>. Isto pode significar que o servidor de hospedagem do seu banco de dados está fora do ar.</p>
-            <ul>
-                <li>Você tem certeza que possui o nome de usuário e senha corretos?</li>
-                <li>Você tem certeza que digitou corretamente o nome do servidor de hospedagem?</li>
-                <li>Você tem certeza que o servidor do banco de dados está funcionando?</li>
-            </ul>
-            <p>Se você não tem certeza do que esses termos significam, provavelmente você deveria contactar seu servidor de hospedagem.</p>
-        </p><p class="step"><a href="setup-config.php?step=1" onclick="javascript:history.go(-1);
-        return false;" class="button button-large">Tente novamente</a></p></body>
-</html>
-EOFPAGE;
-      }
-    
     /**
      * create an HTML when the file was created successfully
      * @access protected
      * @return HTML
      */
-    protected function HTMLSucessCreatedFileConfig()
-      {
-        return <<<EOFPAGE
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-	<link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
-<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-<link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
-</head>
-<body class="wp-core-ui">
-<h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
-<p>Muito bem! Você concluiu esta parte da instalação. Agora o {$this->name} pode se comunicar com seu banco de dados. Se você estiver pronto, é hora de&hellip;</p>
+    protected function HTMLSucessCreatedFileConfig() {
+        $html = new DOMDocument();
+        $html->loadHTMLFile("Pages/SucessCreated.xml");
+        $html->preserveWhiteSpace = false;
+        $html->formatOutput = true;
 
-<p class="step"><a href="install.php" class="button button-large">Instalar</a></p>
-<script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
-<script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-<script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
-</body>
-</html>
-EOFPAGE;
-      }
-    
+        $html->getElementById('logo')->nodeValue = sprintf(LOGO, $this->logo, $this->link, $this->name);
+        $html->getElementsByTagName('title')->item(0)->nodeValue = sprintf(STEP1_TITLETAG, $this->name);
+
+        $html->getElementById('text')->nodeValue = sprintf(SUCCESS_TEXT, $this->name);
+
+        $html->getElementById('buttom')->nodeValue = SUCCESS_BUTTOM;
+
+        return $this->RevertHTML($html->saveHTML());
+    }
+
     /**
      * create an HTML when some error occurs
      * @access protected
      * @return HTML
      */
-    protected function HTMLErroUnknow()
-      {
-        return <<<EOFPAGE
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{$this->name} &rsaquo; Arquivo de Configuração da Instalação</title>
-        <link rel='stylesheet' id='buttons-css'  href='css/buttons.min.css?ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.0' type='text/css' media='all' />
-        <link rel='stylesheet' id='install-css'  href='css/install.min.css?ver=4.0' type='text/css' media='all' />
-    </head>
-    <body class="wp-core-ui">
-        <h1 id="logo"><a style="background-image:url('{$this->logo}');" href="{$this->link}" tabindex="-1">{$this->name}</a></h1>
-        <p>Não foi possível gravar o arquivo <code>{$this->file}</code>.</p>
-        <p>Você pode criar o arquivo <code>{$this->file}</code> manualmente e colar o seguinte texto nele.</p>
-        <textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly">{$file_config}</textarea>
-        <p>Depois de concluir clique em &#8220;Instalar&#8221;.</p>
-        <p class="step"><a href="install.php" class="button button-large">Instalar</a></p>
-        <script>
-            (function() {
-                var el = document.getElementById('wp-config');
-                el.focus();
-                el.select();
-            })();
-        </script>
-        <script type='text/javascript' src='js/jquery/jquery.js?ver=1.11.1'></script>
-        <script type='text/javascript' src='js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-        <script type='text/javascript' src='js/language-chooser.min.js?ver=4.0'></script>
-    </body>
-</html>
-EOFPAGE;
-      }
-    
-  }
+    protected function HTMLErroUnknow() {
+        $html = new DOMDocument();
+        $html->loadHTMLFile("Pages/ErroUnknow.xml");
+        $html->preserveWhiteSpace = false;
+        $html->formatOutput = true;
+
+        $html->getElementById('logo')->nodeValue = sprintf(LOGO, $this->logo, $this->link, $this->name);
+        $html->getElementsByTagName('title')->item(0)->nodeValue = sprintf(STEP1_TITLETAG, $this->name);
+
+        $html->getElementById('ERROUNKNOW_TEXT1')->nodeValue = sprintf(ERROUNKNOW_TEXT1, $this->file);
+        $html->getElementById('ERROUNKNOW_TEXT2')->nodeValue = sprintf(ERROUNKNOW_TEXT2, $this->file);
+        $html->getElementById('ERROUNKNOW_TEXT3')->nodeValue = ERROUNKNOW_TEXT3;
+
+        $html->getElementById('wp-config')->nodeValue = $this->FileGenerate($_POST);
+
+        $html->getElementById('buttom')->nodeValue = SUCCESS_BUTTOM;
+
+        return $this->RevertHTML($html->saveHTML());
+    }
+
+}

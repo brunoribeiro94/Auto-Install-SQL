@@ -13,7 +13,9 @@ This script is used for easy database configuration.
 
 #### ON YOUR SERVER (we use Linux Mint 17 Qiana here):
 1. install Apache, MySQL, PHP and eventually PHPMyAdmin: [How to setup a LAMP stack on Ubuntu 12.04](http://www.dev-metal.com/setup-basic-lamp-stack-linux-apache-mysql-php-ubuntu-12-04/)
+
 2. Navigate to your project, you want to add the auto installer for SQL
+
 3. copy the contents of the extracted class-query repository into your project folder
 Best way to do is cloning via git: `git clone https://github.com/offboard/Auto-Install-SQL.git /var/www/You-Project`
 
@@ -21,9 +23,13 @@ Best way to do is cloning via git: `git clone https://github.com/offboard/Auto-I
 
 In *_installer/setup-config-html.php*:
 4. enter you  file config name  from your website in `$file`
+
 5. enter your name project in `$name`
+
 6. enter your link project in `$link`
+
 7. define your logo project in `$logo`
+
 8. protected function put in the code of your configuration file, replace the credentials of the database, you can use `print_r($POST);` to get past the POST method values.
 
 In *_installer/install.php*:

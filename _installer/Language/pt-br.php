@@ -53,7 +53,7 @@ define('ERROUNKNOW_TEXT3', 'Depois de concluir clique em &#8220;Instalar&#8221;.
 
 // connection error
 define('ERRO_CONNETION_TEXT1', 'Erro ao estabelecer conexão com o banco de dados');
-define('ERRO_CONNETION_TEXT2', 'Isto tanto pode significar que as informações de nome de usuário e senha em seu arquivo <code>$s</code> estão incorretas ou que não pudemos contactar o servidor do banco de dados em <code>localhost</code>. Isto pode significar que o servidor de hospedagem do seu banco de dados está fora do ar.');
+define('ERRO_CONNETION_TEXT2', 'Isto tanto pode significar que as informações de nome de usuário e senha em seu arquivo <code>%s</code> estão incorretas ou que não pudemos contactar o servidor do banco de dados em <code>localhost</code>. Isto pode significar que o servidor de hospedagem do seu banco de dados está fora do ar.');
 define('ERRO_CONNETION_TEXT3', 'Você tem certeza que possui o nome de usuário e senha corretos?');
 define('ERRO_CONNETION_TEXT4', 'Você tem certeza que digitou corretamente o nome do servidor de hospedagem?');
 define('ERRO_CONNETION_TEXT5', 'Você tem certeza que o servidor do banco de dados está funcionando?');

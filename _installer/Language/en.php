@@ -28,3 +28,12 @@ define('STEP2_DLIST3', '&hellip;and your MySQL password.');
 define('STEP2_LIST4', 'Database Host');
 define('STEP2_DLIST4', 'You should be able to get this info from your web host, if <code>localhost</code> does not work.');
 define('STEP2_BUTTOM', 'Submit');
+
+// connection error
+define('ERRO_CONNETION_TEXT1', 'Error establishing a database connection');
+define('ERRO_CONNETION_TEXT2', "This either means that the username and password information in your <code>%s</code> file is incorrect or we can't contact the database server at <code>localhost</code>. This could mean your host's database server is down.");
+define('ERRO_CONNETION_TEXT3', 'Are you sure you have the correct username and password?');
+define('ERRO_CONNETION_TEXT4', 'Are you sure that you have typed the correct hostname?');
+define('ERRO_CONNETION_TEXT5', 'Are you sure that the database server is running?');
+define('ERRO_CONNETION_TEXT6', "If you're unsure what these terms mean you should probably contact your host.");
+define('ERRO_CONNETION_BUTTOM', 'Try again');

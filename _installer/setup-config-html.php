@@ -60,6 +60,9 @@ class SetupConfigHTML
             case 'pt-br':
                 include(__DIR__ . '/Language/pt-br.php');
                 break;
+             case 'en':
+                include(__DIR__ . '/Language/en.php');
+                break;    
             default:
                 break;
         }

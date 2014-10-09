@@ -4,10 +4,10 @@
 define('LOGO', <<<EOF
 <a style="background-image:url('%s');" href="%s" tabindex="-1">%s</a>
 EOF
-
+);
 /*
-* Steps
-*/
+ * Steps
+ */
 define('STEP1_TITLETAG', '%s &rsaquo; Configuration File Installation');
 define('STEP1_TITLE', 'Welcome to %s. Before getting started, we need some information on the database. You will need to know the following items before proceeding.');
 define('STEP1_LIST1', 'Database name');
@@ -28,7 +28,12 @@ define('STEP2_DLIST3', '&hellip;and your MySQL password.');
 define('STEP2_LIST4', 'Database Host');
 define('STEP2_DLIST4', 'You should be able to get this info from your web host, if <code>localhost</code> does not work.');
 define('STEP2_BUTTOM', 'Submit');
-
+// sucess
+define('SUCCESS_TEXT', 'All right, sparky! You&#8217;ve made it through this part of the installation. %s can now communicate with your database. If you are ready, time now to&hellip;');
+define('SUCCESS_BUTTOM', 'Run the install');
+/**
+ * Erros
+ */
 // unknown error
 define('ERROUNKNOW_TEXT1', 'Sorry, but I can’t write the <code>%s</code> file.');
 define('ERROUNKNOW_TEXT2', 'You can create the <code>%s</code> manually and paste the following text into it.');

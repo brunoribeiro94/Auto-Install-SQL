@@ -9,6 +9,9 @@ EOF
 
 // finish
 
+// sucess
+define('SUCCESS_TEXT', 'Muy bien, vivaracho! Usted lo ha hecho a través de esta parte de la instalación. %s puede ahora comunicarse con su base de datos. Si usted está listo, el tiempo ahora a & hellip;');
+define('SUCCESS_BUTTOM', 'Ejecute la instalación');
 /**
 * Erros
 */

@@ -1,6 +1,11 @@
 # Auto-Install-SQL
 This script is used for easy database configuration.
 
+### Ready Languages
+* English
+* Español - Beta
+* Português
+
 ### Key Features
 * Uses Mysqli to check for database access (more security)
 * Create configuration file

@@ -4,6 +4,7 @@ This script is used for easy database configuration.
 ### Ready Languages
 * English
 * Español - Beta
+* Italiano - Beta
 * Português
 
 ### Key Features

@@ -66,6 +66,9 @@ class SetupConfigHTML
              case 'es': // Español - Beta
                 include(__DIR__ . '/Language/es.php');
                 break; 
+            case 'it': // Italiano - Beta
+                include(__DIR__ . '/Language/it.php');
+                break;
             default:
                 break;
         }

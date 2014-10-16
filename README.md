@@ -6,6 +6,7 @@ This script is used for easy database configuration.
 * Español - Beta
 * Italiano - Beta
 * Português
+* Русский - Beta
 
 ### Key Features
 * Uses Mysqli to check for database access (more security)

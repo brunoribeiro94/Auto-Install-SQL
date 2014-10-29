@@ -93,6 +93,7 @@ class SetupConfig extends SetupConfigHTML
      */
     public function __construct()
       {
+        parent::__construct();
         $step = filter_input(INPUT_GET, 'step');
         switch ($step)
         {

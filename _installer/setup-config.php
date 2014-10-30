@@ -46,7 +46,6 @@ class SetupConfig extends SetupConfigHTML
           }
         else
           {
-            fwrite($f, pack("CCC", 0xef, 0xbb, 0xbf)); // Now UTF-8 - Add byte order mark
             fwrite($f, $content);
             fclose($f);
           }

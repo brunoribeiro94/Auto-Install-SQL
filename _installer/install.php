@@ -8,6 +8,7 @@ $sql_execute = 'Run.sql';
 
 // create a new database connection
 $mysqli      = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$mysqli->set_charset('utf8');
 
 // Check if any error occurred
 if (mysqli_connect_errno())

@@ -58,19 +58,19 @@ class SetupConfigHTML
         switch ($this->CurrentLanguage)
         {
             case 'pt-br': // Português Brasileiro
-                include(__DIR__ . '/Language/pt-br.php');
+                include('/Language/pt-br.php');
                 break;
              case 'en': // English
-                include(__DIR__ . '/Language/en.php');
+                include('/Language/en.php');
                 break;    
              case 'es': // Español - Beta
-                include(__DIR__ . '/Language/es.php');
+                include('/Language/es.php');
                 break; 
             case 'it': // Italiano - Beta
-                include(__DIR__ . '/Language/it.php');
+                include('/Language/it.php');
                 break;
             case 'ru': // Русский - Beta
-                include(__DIR__ . '/Language/ru.php');
+                include('/Language/ru.php');
                 break;
             default:
                 break;

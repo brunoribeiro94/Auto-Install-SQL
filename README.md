@@ -42,7 +42,7 @@ In *_installer/setup-config-html.php*:
 In *_installer/install.php*:
 
 9. replace if necessary credentials to connect to the database.
-10. replace the variable `$sql_execute` put your .sql that will run on the database.
+10. replace value the variable `$sql_execute` put the name of your .SQL file that will run on the database.
 
 
 ## Index.php Example

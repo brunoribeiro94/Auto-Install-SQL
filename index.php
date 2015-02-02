@@ -3,10 +3,9 @@
 $CONFIG_FILE_REQUIRED = 'config/config.inc.php';
 
 // check file not exist
-if (!file_exists($CONFIG_FILE_REQUIRED)) 
-{
+if (!file_exists($CONFIG_FILE_REQUIRED)) {
     header('location: _installer/setup-config.php');
 }
 
-// replace the beginning of your application
+// replace this for autoload of your application
 echo 'installed';

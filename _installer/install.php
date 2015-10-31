@@ -1,5 +1,6 @@
 <?php
-
+ini_set('display_errors', 0);
+ini_set('display_startup_erros', 0);
 // include file config
 require '../config/config.inc.php';
 
@@ -11,18 +12,16 @@ $mysqli      = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $mysqli->set_charset('utf8');
 
 // Check if any error occurred
-if (mysqli_connect_errno())
-  {
+if (mysqli_connect_errno()){
     die('An error occurred while connecting to the database');
-  }
+}
 $query = file_get_contents($sql_execute);
 
 /* execute multi query */
-if (mysqli_multi_query($mysqli, $query))
-  {
+if (mysqli_multi_query($mysqli, $query)){
+    sleep(20);
     header('location: ../index.php');
-  }
-else
-  {
+  
+}else{
     header('location: setup-config.php');
-  }
+}

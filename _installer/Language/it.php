@@ -17,7 +17,7 @@ define('STEP1_LIST1', 'Nome del database');
 define('STEP1_LIST2', 'Nome utente database');
 define('STEP1_LIST3', 'Database delle password');
 define('STEP1_LIST4', 'Server di database');
-define('STEP1_TEXT1', 'Useremo queste informazioni per creare un file <code>%s</code>. <strong>Se per caso, la creazione automatica dei file non funziona, non ti preoccupare. Tutto quello che fa è inserire le informazioni dal database in un file di configurazione. È anche possibile aprire semplicemente <code>%s</code> in un editor di testo, inserire le informazioni e salvarlo come <code>%s</code>.');
+define('STEP1_TEXT1', 'Useremo queste informazioni per creare un file <code>%s</code>. <strong>Se per caso, la creazione automatica dei file non funziona, non ti preoccupare. Tutto quello che fa è inserire le informazioni dal database in un file di configurazione. È anche possible aprire semplicemente <code>%s</code> in un editor di testo, inserire le informazioni e salvarlo come <code>%s</code>.');
 define('STEP1_TEXT2', 'Probabilmente questi elementi sono stati forniti dal vostro server di hosting. Se non si dispone di queste informazioni, allora avete bisogno di contattarli prima di continuare. Se sei pronto ...');
 define('STEP1_BUTTOM', 'Venire!');
 define('STEP2_TITLE', 'Benvenuti ao %s. Prima di iniziare, abbiamo bisogno di alcune informazioni sul database. È necessario conoscere il valore dei seguenti elementi prima di procedere.');
@@ -41,7 +41,7 @@ define('SUCCESS_BUTTOM', 'Installare');
 */
 // unknown error
 define('ERROUNKNOW_TEXT1', 'Impossibile scrivere il file <code>%s</code>.');
-define('ERROUNKNOW_TEXT2', 'È possibile creare il file <code>%s</code> manualmente e incollare il seguente testo su di esso.');
+define('ERROUNKNOW_TEXT2', 'È possible creare il file <code>%s</code> manualmente e incollare il seguente testo su di esso.');
 define('ERROUNKNOW_TEXT3', 'Dopo aver completato click &#8220;Installare&#8221;.');
 
 // connection error

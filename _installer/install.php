@@ -16,12 +16,14 @@ if (mysqli_connect_errno()){
     die('An error occurred while connecting to the database');
 }
 $query = file_get_contents($sql_execute);
-
 /* execute multi query */
-if (mysqli_multi_query($mysqli, $query)){
-    sleep(20);
-    header('location: ../index.php');
-  
-}else{
-    header('location: setup-config.php');
-}
+@mysqli_multi_query($mysqli, $query);
+do {
+    if ($result = mysqli_store_result($mysqli)) {
+        mysqli_free_result($result);
+            header('location: ../index.php');
+        }
+    } while (mysqli_next_result($mysqli));
+    if (mysqli_error($mysqli)) {
+         header('location: setup-config.php');
+    }

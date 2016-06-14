@@ -12,6 +12,7 @@ This script is used for easy database configuration.
 * Uses Mysqli to check for database access (more security)
 * Create configuration file
 * Layout based on the wordpress installation
+* Expected completion installation database
 
 ## Requirements
 
